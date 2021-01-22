@@ -5,8 +5,10 @@ import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import axios from 'axios'
 
-import { getPages, fMoney } from '../../src/utils'
-import { Page, Header, TopGroup, MenuList } from '../../src/styles/menu'
+import { getPages, fMoney } from '../src/utils'
+// import { data } from '../../data_test'
+
+import { Page, Header, TopGroup, MenuList } from '../src/styles/menu'
 
 const useStyles = makeStyles((theme) => ({
   print: {
@@ -32,11 +34,15 @@ export default function Menu() {
   const [pages, setPages] = useState(true)
 
   useEffect(() => {
+    // setPages(getPages(data))
+    // setIsLoading(false)
+
     axios.get(process.env.BACK_API).then(response => {
       const apiPages = getPages(response.data)
       setPages(apiPages)
       setIsLoading(false)
     })
+
   }, [])
 
 
