@@ -12,8 +12,7 @@ export default function Index({ apiData }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(`https://backfc.herokuapp.com/api/items`)
-  // const res = await fetch(`https://www.fogaocaseiro.com.br/imgs/data.json`)
+  const res = await fetch(process.env.BACK_API)
   const apiData = await res.json()
 
   return {
