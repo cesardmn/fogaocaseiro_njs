@@ -50,7 +50,7 @@ export default function Menu() {
       setIsLoading(false)
     })
 
-  }, [])
+  }, []) 
 
 
   const classes = useStyles();
