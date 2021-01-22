@@ -1,69 +1,128 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import PageDefault from '../components/PageDefault'
-import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import axios from 'axios'
 
 import { getPages, fMoney } from '../src/utils'
+// import { data } from '../../data_test'
+
+import { Page, Header, TopGroup, MenuList } from '../src/styles/menu'
 
 const useStyles = makeStyles((theme) => ({
-  root: {}
+  print: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  grid: {
+    padding: '1rem',
+  },
+  itemId: {
+    color: theme.palette.secondary.main,
+    marginLeft: '0.5rem'
+  },
+  price: {
+    color: theme.palette.primary.main,
+  }
 }));
 
-export default function Menu({ data }) {
+export default function Menu() {
+
+  const [isLoading, setIsLoading] = useState(true)
+  const [pages, setPages] = useState(true)
+
+  useEffect(() => {
+    // setPages(getPages(data))
+    // setIsLoading(false)
+
+    axios.get(process.env.BACK_API).then(response => {
+      const apiPages = getPages(response.data)
+      setPages(apiPages)
+      setIsLoading(false)
+    })
+
+  }, [])
+
 
   const classes = useStyles();
-  const pages = getPages(data)
-
   return (
-    <PageDefault >
-
+    <div className={classes.print} >
       {
-        pages.map((page, index) => {
-          return (
-            <Container key={index}>
+        isLoading ? <h1>Loading...</h1>
+          :
+          <>
+            {
+              pages.map((page, index) => {
+                return (
+                  <Page key={index}  >
+                    <Header >
+                      <img src="./media/logo.png" alt="" />
 
-              <h1 >{page.group}</h1>
+                      <div className="social">
+                        <a href="https://wa.me/5521999374814"
+                          target="blank"
+                          rel="noopener noreferrer">
+                          <WhatsAppIcon />
+                          <span>(21) 999 37 48 14</span>
+                        </a>
 
-              <ul>
-                {
-                  page.types.map(type => <li key={type}>{type}</li>)
-                }
-              </ul>
+                        <a href="https://www.instagram.com/fogaocaseirooficial"
+                          target="blank"
+                          rel="noopener noreferrer">
+                          <InstagramIcon />
+                          <span>@fogaocaseirooficial</span>
+                        </a>
+                      </div>
+                    </Header>
 
-              <ul>
-                {
-                  page.items.map(item => {
-                    return (
-                      <li>
+                    <TopGroup >
+                      <h1>{page.group}</h1>
+                      <span>(mínimo {page.min_order}un.)</span>
+                    </TopGroup>
 
-                        <p key={item.id}>
-                          <span>{item.id} - </span> {item.description} - <span>{fMoney(item.sale_price)}</span>
-                        </p>
-                        <hr />
-                      </li>
-                    )
-                  })
-                }
-              </ul>
+                    <MenuList >
+                      {
+                        page.types.map((type, index) => {
+                          return (
+                            <div className="typeList" key={index} >
+                              <h1 >{type}</h1>
 
-            </Container>
-          )
-        })
+                              <ul>
+                                {
+                                  page.items.map(item => {
+                                    return (
+                                      <li key={item.id}>
+                                        <Grid container direction="row" >
+                                          <Grid item xs={10} >
+                                            <span className={classes.itemId} >{item.id}</span> - {item.description}
+                                          </Grid>
+
+                                          <Grid item xs={2} className={classes.price} >
+                                            {fMoney(item.sale_price)}
+                                          </Grid>
+
+                                        </Grid>
+                                      </li>
+                                    )
+                                  })
+                                }
+                              </ul>
+
+                            </div>
+                          )
+                        })
+                      }
+                    </MenuList>
+
+                  </Page>
+                )
+              })
+            }
+          </>
       }
+    </div>
 
-
-    </PageDefault>
   )
-}
-
-export async function getStaticProps() {
-  // const res = await fetch(`https://backfc.herokuapp.com/api/items`)
-  const res = await fetch(`https://www.fogaocaseiro.com.br/imgs/data.json`)
-  const data = await res.json()
-
-  return {
-    props: {
-      data
-    }
-  }
 }
