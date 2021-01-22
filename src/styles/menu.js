@@ -62,10 +62,12 @@ export const TopGroup = styled.div`
   display: flex;
   align-items:baseline;
   justify-content: center;
-  font-size: 20px;
+  font-size: 24px;
   
   span {
     margin-left: 0.5rem;
+    font-size: 26px;
+    color: grey;
   } 
 `
 
@@ -78,13 +80,18 @@ export const MenuList = styled.div`
     
     h1 {
       padding: 0 1rem;
+      font-size: 34px;
+      margin: 1rem 0;
+      text-decoration: underline;
+      margin: 2.5rem 0;
     }
 
     li {
       display: flex;
       font-size: 30px;
       border-bottom: 1px solid #e2e2e2;
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
+      padding-left: 1rem;
     }
 
   }

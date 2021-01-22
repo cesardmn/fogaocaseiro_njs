@@ -6,8 +6,6 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import axios from 'axios'
 
 import { getPages, fMoney } from '../src/utils'
-// import { data } from '../../data_test'
-
 import { Page, Header, TopGroup, MenuList } from '../src/styles/menu'
 
 const useStyles = makeStyles((theme) => ({
@@ -16,12 +14,22 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
+  icon: {
+    fontSize: '34px',
+    fontWeight: 'bolder',
+  },
+  groupTitle: {
+    color: theme.palette.primary.main
+  },
+  typeText: {
+    color: theme.palette.secondary.main,
+  },
   grid: {
     padding: '1rem',
   },
   itemId: {
     color: theme.palette.secondary.main,
-    marginLeft: '0.5rem'
+    marginLeft: '1rem'
   },
   price: {
     color: theme.palette.primary.main,
@@ -31,11 +39,10 @@ const useStyles = makeStyles((theme) => ({
 export default function Menu() {
 
   const [isLoading, setIsLoading] = useState(true)
-  const [pages, setPages] = useState(true)
+  const [pages, setPages] = useState([])
 
   useEffect(() => {
-    // setPages(getPages(data))
-    // setIsLoading(false)
+    setIsLoading(false)
 
     axios.get(process.env.BACK_API).then(response => {
       const apiPages = getPages(response.data)
@@ -64,22 +71,22 @@ export default function Menu() {
                         <a href="https://wa.me/5521999374814"
                           target="blank"
                           rel="noopener noreferrer">
-                          <WhatsAppIcon />
+                          <WhatsAppIcon className={classes.icon} />
                           <span>(21) 999 37 48 14</span>
                         </a>
 
                         <a href="https://www.instagram.com/fogaocaseirooficial"
                           target="blank"
                           rel="noopener noreferrer">
-                          <InstagramIcon />
+                          <InstagramIcon className={classes.icon} />
                           <span>@fogaocaseirooficial</span>
                         </a>
                       </div>
                     </Header>
 
                     <TopGroup >
-                      <h1>{page.group}</h1>
-                      <span>(mínimo {page.min_order}un.)</span>
+                      <h1 className={classes.groupTitle} >{page.group}</h1>
+                      <span>(mínimo {page.min_order} un.)</span>
                     </TopGroup>
 
                     <MenuList >
@@ -87,14 +94,14 @@ export default function Menu() {
                         page.types.map((type, index) => {
                           return (
                             <div className="typeList" key={index} >
-                              <h1 >{type}</h1>
+                              <h1 className={classes.typeText} >{type}</h1>
 
                               <ul>
                                 {
                                   page.items.map(item => {
                                     return (
                                       <li key={item.id}>
-                                        <Grid container direction="row" >
+                                        <Grid container direction="row" className={classes.grid} >
                                           <Grid item xs={10} >
                                             <span className={classes.itemId} >{item.id}</span> - {item.description}
                                           </Grid>
