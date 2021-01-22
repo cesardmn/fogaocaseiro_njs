@@ -6,9 +6,6 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import axios from 'axios'
 
 import { getPages, fMoney } from '../../src/utils'
-
-// import { data } from '../../data_test'
-
 import { Page, Header, TopGroup, MenuList } from './styles'
 
 const useStyles = makeStyles((theme) => ({
@@ -35,17 +32,13 @@ export default function Menu() {
   const [pages, setPages] = useState(true)
 
   useEffect(() => {
-    // setPages(getPages(data))
-    // setIsLoading(false)
-
     axios.get(process.env.BACK_API).then(response => {
       const apiPages = getPages(response.data)
-      setPages(apiPages)  
+      setPages(apiPages)
       setIsLoading(false)
     })
-
   }, [])
-  
+
 
   const classes = useStyles();
   return (
