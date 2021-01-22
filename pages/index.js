@@ -12,8 +12,8 @@ export default function Index({ apiData }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(process.env.BACK_API)
-  const apiData = await res.json()
+    const res = await fetch(process.env.BACK_API)
+    const apiData = await res.json()
 
   return {
     props: {
