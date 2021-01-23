@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   media: {
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '36.25%',
   },
   title: {
     color: theme.palette.primary.main,
@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
   types: {
     color: theme.palette.secondary.light,
     marginBottom: 10,
-    // border: '1px solid black',
     height: 40,
   },
   typeText: {

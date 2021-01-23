@@ -107,7 +107,7 @@ export default function PageDefault({ children }) {
       <Toolbar />
 
       <Container>
-        <Box my={6}>
+        <Box my={0}>
           {children}
         </Box>
       </Container>
