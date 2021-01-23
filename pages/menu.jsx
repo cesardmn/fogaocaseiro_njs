@@ -5,7 +5,7 @@ import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import axios from 'axios'
 
-import { getPages, fMoney } from '../src/utils'
+import { getPages, fMoney, CapStrFirst } from '../src/utils'
 import { Page, Header, TopGroup, MenuList } from '../src/styles/menu'
 
 const useStyles = makeStyles((theme) => ({
@@ -92,18 +92,21 @@ export default function Menu() {
                     <MenuList >
                       {
                         page.types.map((type, index) => {
+
+                          const items = page.items.filter(item => item.type.name === type)
+
                           return (
                             <div className="typeList" key={index} >
                               <h1 className={classes.typeText} >{type}</h1>
 
                               <ul>
                                 {
-                                  page.items.map(item => {
+                                  items.map(item => {
                                     return (
                                       <li key={item.id}>
                                         <Grid container direction="row" className={classes.grid} >
                                           <Grid item xs={10} >
-                                            <span className={classes.itemId} >{item.id}</span> - {item.description}
+                                            <span className={classes.itemId} >{item.id}</span> - {CapStrFirst(item.description)}
                                           </Grid>
 
                                           <Grid item xs={2} className={classes.price} >

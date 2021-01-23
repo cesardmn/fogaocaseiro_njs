@@ -46,6 +46,10 @@ export function fMoney(value) {
   })
 }
 
+export function CapStrFirst(text){
+  return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase()
+}
+
 export function __getPagesNumbers(data) {
   const numbers = new Set()
 
