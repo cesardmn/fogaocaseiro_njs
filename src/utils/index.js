@@ -46,7 +46,7 @@ export function fMoney(value) {
   })
 }
 
-export function CapStrFirst(text){
+export function CapStrFirst(text) {
   return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase()
 }
 
@@ -76,4 +76,17 @@ export function getPages(data) {
     pages.push(page)
   }
   return pages
+}
+
+export function setCart() {
+  const oldCart = JSON.parse(localStorage.getItem('cart'))
+  const today = new Date().toLocaleDateString()
+  const newCart = { date: today, items: [] }
+
+  if (oldCart === null) {
+    localStorage.setItem('cart', JSON.stringify(newCart))
+  }
+  else {
+    today !== oldCart.date && localStorage.setItem('cart', JSON.stringify(newCart))
+  }
 }
