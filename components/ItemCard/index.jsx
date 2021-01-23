@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-import { fMoney } from '../../src/utils'
+import { fMoney, CapStrFirst } from '../../src/utils'
 import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
@@ -27,9 +27,6 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.main,
     marginTop: 5,
   },
-  description: {
-    textTransform: 'lowercase'
-  },
 }));
 
 export default function ItemCard({ item }) {
@@ -43,10 +40,10 @@ export default function ItemCard({ item }) {
           <Grid container justify="space-between" className={classes.grid} >
 
             <Grid item xs={10} >
-              <Typography className={classes.description} >
+              <Typography >
                 <span className={classes.id}>
                   {item.id}
-                </span> - {item.description}
+                </span> - {CapStrFirst(item.description)}
               </Typography>
             </Grid>
 
