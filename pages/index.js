@@ -12,7 +12,14 @@ export default function Index({ apiData }) {
 }
 
 export async function getStaticProps() {
-    const res = await fetch(process.env.BACK_API)
+
+    const config = {
+      headers: {
+        'Content-Type': 'application.json',
+        'Authorization': process.env.TOKEN
+      }
+    }
+    const res = await fetch(process.env.BACK_API_DEV, config)
     const apiData = await res.json()
 
   return {
