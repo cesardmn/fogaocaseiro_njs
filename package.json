@@ -32,5 +32,11 @@
     "react-dom": "^17.0.1",
     "react-slick": "^0.27.14",
     "styled-components": "^5.2.1"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true
   }
 }
