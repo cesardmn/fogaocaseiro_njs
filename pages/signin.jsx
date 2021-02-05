@@ -10,10 +10,10 @@ import Typography from '@material-ui/core/Typography'
 import { useRouter } from 'next/router'
 import Alert from '@material-ui/lab/Alert'
 
-import Copyright from '../../components/Copyright'
+import Copyright from '../src/components/Copyright'
 
-import { sigInStyles } from './styles'
-import { logIn } from './tasks'
+import { sigInStyles } from '../src/pages_files/signin/styles'
+import { logIn } from '../src/pages_files/signin/tasks'
 
 const useStyles = sigInStyles
 
