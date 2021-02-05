@@ -35,22 +35,15 @@ const InstagramLinkProps = {
 export default function PageDefaultMenu() {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
 
   const isMenuOpen = Boolean(anchorEl)
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget)
   }
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null)
-  }
-
   const handleMenuClose = () => {
     setAnchorEl(null)
-    handleMobileMenuClose()
   }
 
   const renderMenu = (
@@ -88,7 +81,7 @@ export default function PageDefaultMenu() {
           </IconButton>
         </Link>
 
-        <IconButton aria-label="show 17 new notifications" color="inherit">
+        <IconButton color="inherit">
           <Badge badgeContent={0} color="secondary">
             <ShoppingCartIcon />
           </Badge>
@@ -104,7 +97,6 @@ export default function PageDefaultMenu() {
           <AccountCircle />
         </IconButton>
       </Toolbar>
-
       {renderMenu}
     </div>
   )
