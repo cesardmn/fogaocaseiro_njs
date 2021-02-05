@@ -9,7 +9,7 @@ export const Info = styled.div`
 
   color: grey;
   font-size: 18px;
-  text-align: justify;
+  text-align: center;
   outline: 0;
 `
 export const Order = styled.div`
