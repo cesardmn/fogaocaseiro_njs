@@ -42,9 +42,8 @@ export default function Menu() {
   const [pages, setPages] = useState([])
 
   useEffect(() => {
-    setIsLoading(false)
-
-    axios.get(process.env.BACK_API).then(response => {
+    const url = `${process.env.BACK_API}/items`
+    axios.get(url).then(response => {
       const apiPages = getPages(response.data)
       setPages(apiPages)
       setIsLoading(false)
