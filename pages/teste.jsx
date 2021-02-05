@@ -19,7 +19,9 @@ export default function Teste() {
       body: JSON.stringify(order),
     }
 
-    const res = await fetch(process.env.BACK_API, requestOptions)
+    const url = `${process.env.BACK_API}/order/`
+
+    const res = await fetch(url, requestOptions)
     const apiData = await res.json()
 
     console.log(apiData)
