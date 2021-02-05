@@ -19,8 +19,7 @@ export function getGroups(data) {
   const names = __getGroupNames(data)
   const groups = []
   for (let name of names) {
-
-    let items = data.filter(item => item.group.name === name)
+    let items = data.filter((item) => item.group.name === name)
     let types = __getTypes(items)
 
     const group = {
@@ -38,11 +37,10 @@ export function getGroups(data) {
 }
 
 export function fMoney(value) {
-  return value.toLocaleString(
-    'pt-BR', {
+  return value.toLocaleString('pt-BR', {
     minimumFractionDigits: 2,
     style: 'currency',
-    currency: 'BRL'
+    currency: 'BRL',
   })
 }
 
@@ -59,12 +57,11 @@ export function __getPagesNumbers(data) {
   return [...numbers].sort()
 }
 
-
 export function getPages(data) {
   const numbers = __getPagesNumbers(data)
   const pages = []
   for (let number of numbers) {
-    let items = data.filter(item => item.type.menu_page === number)
+    let items = data.filter((item) => item.type.menu_page === number)
     let types = __getTypes(items)
 
     let page = {
@@ -76,17 +73,4 @@ export function getPages(data) {
     pages.push(page)
   }
   return pages
-}
-
-export function setCart() {
-  const oldCart = JSON.parse(localStorage.getItem('cart'))
-  const today = new Date().toLocaleDateString()
-  const newCart = { date: today, items: [] }
-
-  if (oldCart === null) {
-    localStorage.setItem('cart', JSON.stringify(newCart))
-  }
-  else {
-    today !== oldCart.date && localStorage.setItem('cart', JSON.stringify(newCart))
-  }
 }

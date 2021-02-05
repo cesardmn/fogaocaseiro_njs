@@ -1,6 +1,6 @@
 import React from 'react';
-import PageDefault from '../components/PageDefault'
-import Home from '../components/Home'
+import PageDefault from '../src/components/PageDefault'
+import Home from '../src/components/Home'
 
 export default function Index({ apiData }) {
 
