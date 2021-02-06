@@ -128,11 +128,11 @@ export default function PageDefaultMenu() {
           </IconButton>
         </Link>
 
-        <IconButton color="inherit">
+        {/* <IconButton color="inherit">
           <Badge badgeContent={0} color="secondary">
             <ShoppingCartIcon />
           </Badge>
-        </IconButton>
+        </IconButton> */}
 
         <IconButton
           edge="end"
@@ -143,7 +143,14 @@ export default function PageDefaultMenu() {
           }}
           color="inherit"
         >
-          <AccountCircle />
+          <Badge
+            badgeContent={user === '' ? 0 : user}
+            color="secondary"
+            overlap="circle"
+            variant="dot"
+          >
+            <AccountCircle />
+          </Badge>
         </IconButton>
       </Toolbar>
       {renderMenu}

@@ -55,11 +55,13 @@ export default function SignInSide() {
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <img
-            src="./media/logo.png"
-            alt="Fogão Caseiro"
-            className={classes.logo}
-          />
+          <Link href="/">
+            <img
+              src="./media/logo.png"
+              alt="Fogão Caseiro"
+              className={classes.logo}
+            />
+          </Link>
 
           <Typography component="h1" variant="h5" color="primary">
             Login
@@ -102,7 +104,7 @@ export default function SignInSide() {
             >
               Entrar
             </Button>
-            <Grid container>
+            {/* <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
                   Esqueceu a senha?
@@ -113,7 +115,7 @@ export default function SignInSide() {
                   {'Não tenho conta, quero me cadastrar.'}
                 </Link>
               </Grid>
-            </Grid>
+            </Grid> */}
             <Box mt={5}>
               <Copyright />
             </Box>

@@ -1,5 +1,7 @@
 export async function logIn(username, password) {
-  const url = `http://127.0.0.1:8000/auth-token`
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/auth-token`
+
+  console.log(url)
 
   const credentials = {
     username,
