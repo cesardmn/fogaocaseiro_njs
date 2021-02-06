@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useReducer } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
@@ -10,6 +10,8 @@ import Link from '@material-ui/core/Link'
 import WhatsAppIcon from '@material-ui/icons/WhatsApp'
 import InstagramIcon from '@material-ui/icons/Instagram'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
+
+import { useAuth } from '../../providers/auth'
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -32,35 +34,76 @@ const InstagramLinkProps = {
   href: 'https://www.instagram.com/fogaocaseirooficial',
 }
 
+const MenuProps = {
+  anchorOrigin: { vertical: 'top', horizontal: 'right' },
+  keepMounted: true,
+  transformOrigin: { vertical: 'top', horizontal: 'right' },
+}
+
 export default function PageDefaultMenu() {
   const classes = useStyles()
-  const [anchorEl, setAnchorEl] = React.useState(null)
+  const { user, setUser } = useAuth()
 
+  const [anchorEl, setAnchorEl] = React.useState(null)
   const isMenuOpen = Boolean(anchorEl)
 
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem('user')) || { user: '' }
+    setUser(data.user)
+  }, [])
 
-  const handleMenuClose = () => {
-    setAnchorEl(null)
+  function logOut() {
+    localStorage.setItem('user', JSON.stringify({ user: '' }))
+    setUser('')
   }
 
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      {...MenuProps}
       open={isMenuOpen}
-      onClose={handleMenuClose}
+      onClose={() => {
+        setAnchorEl(null)
+      }}
     >
-      <MenuItem onClick={handleMenuClose}>
-        <Link href="/signin">Entrar</Link>
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <Link href="/signup">Cadastrar</Link>
-      </MenuItem>
+      {user !== '' ? (
+        <div>
+          <MenuItem
+            onClick={() => {
+              setAnchorEl(null)
+            }}
+          >
+            <span>{user}</span>
+          </MenuItem>
+
+          <MenuItem
+            onClick={() => {
+              setAnchorEl(null)
+              logOut()
+            }}
+          >
+            <span>sair</span>
+          </MenuItem>
+        </div>
+      ) : (
+        <div>
+          <MenuItem
+            onClick={() => {
+              setAnchorEl(null)
+            }}
+          >
+            <Link href="/signin">Entrar</Link>
+          </MenuItem>
+
+          <MenuItem
+            onClick={() => {
+              setAnchorEl(null)
+            }}
+          >
+            {<Link href="/signup">Cadastrar</Link>}
+          </MenuItem>
+        </div>
+      )}
     </Menu>
   )
 
@@ -91,7 +134,9 @@ export default function PageDefaultMenu() {
           edge="end"
           aria-label="account of current user"
           aria-haspopup="true"
-          onClick={handleProfileMenuOpen}
+          onClick={(e) => {
+            setAnchorEl(e.currentTarget)
+          }}
           color="inherit"
         >
           <AccountCircle />

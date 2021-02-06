@@ -15,22 +15,27 @@ import Copyright from '../src/components/Copyright'
 import { sigInStyles } from '../src/pages_files/signin/styles'
 import { logIn } from '../src/pages_files/signin/tasks'
 
+import { useAuth } from '../src/providers/auth'
+
 const useStyles = sigInStyles
 
 export default function SignInSide() {
   const classes = useStyles()
   const router = useRouter()
 
-  const [user, setUser] = useState('')
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [alert, setAlert] = useState('')
 
+  const { user, setUser } = useAuth()
+
   async function handleLogin(e) {
     e.preventDefault()
-    const loginResponse = await logIn(user, password)
+    const loginResponse = await logIn(username, password)
 
     if (loginResponse.token) {
       setAlert(false)
+      setUser(username)
       router.push('/')
     } else {
       setAlert(true)
@@ -66,11 +71,11 @@ export default function SignInSide() {
           >
             <TextField
               {...textFieldCommomProps}
-              value={user}
-              name="user"
+              value={username}
+              name="username"
               label="usuário"
-              id="user"
-              onChange={(e) => setUser(e.target.value)}
+              id="username"
+              onChange={(e) => setUsername(e.target.value)}
             />
             <TextField
               {...textFieldCommomProps}
