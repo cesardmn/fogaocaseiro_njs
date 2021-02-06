@@ -42,7 +42,7 @@ export default function Menu() {
   const [pages, setPages] = useState([])
 
   useEffect(() => {
-    const url = `${process.env.BACK_API}/items`
+    const url = `${process.env.BASE_URL}/api/items`
     axios.get(url).then(response => {
       const apiPages = getPages(response.data)
       setPages(apiPages)

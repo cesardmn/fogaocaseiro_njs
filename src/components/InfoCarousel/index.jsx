@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     width: '100%',
     minWidth: '300px',
-    maxWidth: '600px',
+    maxWidth: '400px',
     display: 'flex',
     flexDirection: 'column',
     marginBottom: 30,
@@ -26,10 +26,10 @@ const useStyles = makeStyles((theme) => ({
 export default function SimpleSlider() {
   const settings = {
     infinite: true,
-    speed: 1500,
+    speed: 3500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: 5000,
+    autoplay: 1000,
     pauseOnHover: true,
     dots: true,
   }
@@ -44,6 +44,8 @@ export default function SimpleSlider() {
             A solução para quem não tem tempo de cozinhar, mas gosta de boa
             comida em sua mesa.
           </p>
+        </Info>
+        <Info>
           <p>
             Consulte nossas opções e aproveite as delícias da comida caseira.
           </p>

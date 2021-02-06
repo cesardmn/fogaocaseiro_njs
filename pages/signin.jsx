@@ -15,22 +15,27 @@ import Copyright from '../src/components/Copyright'
 import { sigInStyles } from '../src/pages_files/signin/styles'
 import { logIn } from '../src/pages_files/signin/tasks'
 
+import { useAuth } from '../src/providers/auth'
+
 const useStyles = sigInStyles
 
 export default function SignInSide() {
   const classes = useStyles()
   const router = useRouter()
 
-  const [user, setUser] = useState('')
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [alert, setAlert] = useState('')
 
+  const { user, setUser } = useAuth()
+
   async function handleLogin(e) {
     e.preventDefault()
-    const loginResponse = await logIn(user, password)
+    const loginResponse = await logIn(username, password)
 
     if (loginResponse.token) {
       setAlert(false)
+      setUser(username)
       router.push('/')
     } else {
       setAlert(true)
@@ -50,11 +55,13 @@ export default function SignInSide() {
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <img
-            src="./media/logo.png"
-            alt="Fogão Caseiro"
-            className={classes.logo}
-          />
+          <Link href="/">
+            <img
+              src="./media/logo.png"
+              alt="Fogão Caseiro"
+              className={classes.logo}
+            />
+          </Link>
 
           <Typography component="h1" variant="h5" color="primary">
             Login
@@ -66,11 +73,11 @@ export default function SignInSide() {
           >
             <TextField
               {...textFieldCommomProps}
-              value={user}
-              name="user"
+              value={username}
+              name="username"
               label="usuário"
-              id="user"
-              onChange={(e) => setUser(e.target.value)}
+              id="username"
+              onChange={(e) => setUsername(e.target.value)}
             />
             <TextField
               {...textFieldCommomProps}
@@ -97,7 +104,7 @@ export default function SignInSide() {
             >
               Entrar
             </Button>
-            <Grid container>
+            {/* <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
                   Esqueceu a senha?
@@ -108,7 +115,7 @@ export default function SignInSide() {
                   {'Não tenho conta, quero me cadastrar.'}
                 </Link>
               </Grid>
-            </Grid>
+            </Grid> */}
             <Box mt={5}>
               <Copyright />
             </Box>
