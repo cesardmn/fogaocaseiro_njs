@@ -13,7 +13,7 @@ export default function Index({ apiData }) {
 
 export async function getStaticProps() {
 
-    const url = `${process.env.BACK_API}/items`
+    const url = `${process.env.BASE_URL}/api/items`
 
     const config = {
       headers: {
