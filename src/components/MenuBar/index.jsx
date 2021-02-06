@@ -82,26 +82,30 @@ export default function PageDefaultMenu() {
               logOut()
             }}
           >
-            <span>sair</span>
+            <span>logout</span>
           </MenuItem>
         </div>
       ) : (
         <div>
-          <MenuItem
-            onClick={() => {
-              setAnchorEl(null)
-            }}
-          >
-            <Link href="/signin">Entrar</Link>
-          </MenuItem>
+          <Link href="/signin">
+            <MenuItem
+              onClick={() => {
+                setAnchorEl(null)
+              }}
+            >
+              Entrar
+            </MenuItem>
+          </Link>
 
-          <MenuItem
-            onClick={() => {
-              setAnchorEl(null)
-            }}
-          >
-            {<Link href="/signup">Cadastrar</Link>}
-          </MenuItem>
+          <Link href="/signup">
+            <MenuItem
+              onClick={() => {
+                setAnchorEl(null)
+              }}
+            >
+              Cadastrar
+            </MenuItem>
+          </Link>
         </div>
       )}
     </Menu>

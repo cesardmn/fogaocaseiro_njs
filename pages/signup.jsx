@@ -38,11 +38,13 @@ export default function SignUp() {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <img
-          src="./media/logo.png"
-          alt="Fogão Caseiro"
-          className={classes.logo}
-        />
+        <Link href="/">
+          <img
+            src="./media/logo.png"
+            alt="Fogão Caseiro"
+            className={classes.logo}
+          />
+        </Link>
         <Typography component="h1" variant="h5" color="primary">
           Cadastrar
         </Typography>
