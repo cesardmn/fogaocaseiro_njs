@@ -45,8 +45,12 @@ export default function SimpleSlider() {
             comida em sua mesa.
           </p>
         </Info>
-        <p>Consulte nossas opções e aproveite as delícias da comida caseira.</p>
-        <Info></Info>
+
+        <Info>
+          <p>
+            Consulte nossas opções e aproveite as delícias da comida caseira.
+          </p>
+        </Info>
         <Order>
           <h1 className={classes.orderTitle}>Encomendas</h1>
           <div className="container">
