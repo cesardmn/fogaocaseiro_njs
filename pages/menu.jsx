@@ -44,7 +44,7 @@ export default function Menu() {
   useEffect(() => {
     setIsLoading(false)
 
-    axios.get(process.env.BACK_API).then(response => {
+    axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/items`).then(response => {
       const apiPages = getPages(response.data)
       setPages(apiPages)
       setIsLoading(false)
