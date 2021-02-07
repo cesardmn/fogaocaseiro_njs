@@ -3,7 +3,7 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import { getGroups } from '../../src/utils'
+import { getGroups } from '../../utils'
 
 import GroupCard from '../GroupCard'
 import InfoCarousel from '../InfoCarousel'

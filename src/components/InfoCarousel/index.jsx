@@ -1,8 +1,6 @@
 import Paper from '@material-ui/core/Paper'
 import { makeStyles } from '@material-ui/core/styles'
 
-import { Info, Order } from '../../src/styles/infoCarousel'
-
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
@@ -36,31 +34,31 @@ export default function SimpleSlider() {
 
   return (
     <Paper className={classes.root}>
-      <Info>
+      <div>
         <p>
           A solução para quem não tem tempo de cozinhar, mas gosta de boa comida
           em sua mesa.
         </p>
-      </Info>
+      </div>
 
-      <Info>
+      <div>
         <p>Consulte nossas opções e aproveite as delícias da comida caseira.</p>
-      </Info>
-      <Order>
+      </div>
+      <div>
         <h1 className={classes.orderTitle}>Encomendas</h1>
         <div className="container">
           <p>2ª a 4ª das 10:00 às 18:00.</p>
           <p>Atendimento via WhatsApp.</p>
         </div>
-      </Order>
+      </div>
 
-      <Order>
+      <div>
         <h1 className={classes.orderTitle}>Entregas</h1>
         <div className="container">
           <p>Icaraí, Santa Rosa, Centro e Ingá: R$ 8,00.</p>
           <p>Demais localidades: sob consulta.</p>
         </div>
-      </Order>
+      </div>
     </Paper>
   )
 }

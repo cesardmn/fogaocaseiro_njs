@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const Page = styled.div`
-
   * {
     margin: 0;
     padding: 0;
@@ -17,18 +16,17 @@ export const Page = styled.div`
 
   align-items: center;
   border: 1px solid grey;
-
 `
 export const Header = styled.div`
   /* border: 1px solid black; */
   height: 30mm;
   width: 100%;
-  overflow: hidden;  
+  overflow: hidden;
   background-image: url('./media/bg.png');
   background-size: cover;
 
   display: flex;
-  align-items:center;
+  align-items: center;
   justify-content: space-evenly;
 
   img {
@@ -41,7 +39,7 @@ export const Header = styled.div`
 
     display: flex;
     flex-direction: column;
-    justify-content:space-evenly;
+    justify-content: space-evenly;
 
     a {
       color: white;
@@ -60,15 +58,15 @@ export const TopGroup = styled.div`
   width: 100%;
 
   display: flex;
-  align-items:baseline;
+  align-items: baseline;
   justify-content: center;
   font-size: 24px;
-  
+
   span {
     margin-left: 0.5rem;
     font-size: 26px;
     color: grey;
-  } 
+  }
 `
 
 export const MenuList = styled.div`
@@ -77,7 +75,6 @@ export const MenuList = styled.div`
   overflow: hidden;
 
   .typeList {
-    
     h1 {
       padding: 0 1rem;
       font-size: 34px;
@@ -93,7 +90,5 @@ export const MenuList = styled.div`
       margin-bottom: 2rem;
       padding-left: 1rem;
     }
-
   }
-
 `

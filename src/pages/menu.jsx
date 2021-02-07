@@ -5,8 +5,8 @@ import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import axios from 'axios'
 
-import { getPages, fMoney, CapStrFirst } from '../src/utils'
-import { Page, Header, TopGroup, MenuList } from '../src/styles/menu'
+import { getPages, fMoney, CapStrFirst } from '../utils'
+import { Page, Header, TopGroup, MenuList } from '../styles/menu'
 
 const useStyles = makeStyles((theme) => ({
   print: {
