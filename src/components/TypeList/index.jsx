@@ -1,7 +1,7 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListSubheader from '@material-ui/core/ListSubheader';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import List from '@material-ui/core/List'
+import ListSubheader from '@material-ui/core/ListSubheader'
 import ItemCard from '../ItemCard'
 
 const useStyles = makeStyles((theme) => ({
@@ -27,41 +27,37 @@ const useStyles = makeStyles((theme) => ({
     height: 60,
     backgroundColor: '#f2f2f2',
     color: 'inherit',
-  }
-}));
+  },
+}))
 
 export default function PinnedSubheaderList({ group }) {
-
-  const classes = useStyles();
+  const classes = useStyles()
 
   const typesNames = group.types
 
   return (
-    <List className={classes.root} subheader={<li />} >
-      {
-        typesNames.map((type, index) => {
+    <List className={classes.root} subheader={<li />}>
+      {typesNames.map((type, index) => {
+        const items = group.items.filter((item) => item.type.name === type)
 
-          const items = group.items.filter(item => item.type.name === type)
+        return (
+          <li
+            key={`section-${index}`}
+            className={classes.listSection}
+            id={type}
+          >
+            <ul className={classes.ul}>
+              <ListSubheader className={classes.ListSubheader}>
+                {type}
+              </ListSubheader>
 
-          return (
-            <li key={`section-${index}`} className={classes.listSection} id={type}>
-              <ul className={classes.ul}>
-
-                <ListSubheader className={classes.ListSubheader}>
-                  {type}
-                </ListSubheader>
-
-                {
-                  items.map((item) => (
-                    <ItemCard item={item} key={item.id} />
-                  ))
-                }
-
-              </ul>
-            </li>
-          )
-        })
-      }
+              {items.map((item) => (
+                <ItemCard item={item} key={item.id} />
+              ))}
+            </ul>
+          </li>
+        )
+      })}
     </List>
-  );
+  )
 }
