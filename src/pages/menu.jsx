@@ -6,7 +6,7 @@ import InstagramIcon from '@material-ui/icons/Instagram'
 import axios from 'axios'
 
 import { getPages, fMoney, CapStrFirst } from '../utils'
-import { Page, Header, TopGroup, MenuList } from '../styles/menu'
+import { Page, Header, TopGroup, MenuList } from '../views/menu/menu'
 
 const useStyles = makeStyles((theme) => ({
   print: {

@@ -1,64 +1,96 @@
-import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core/styles'
 
+import Carousel from 'react-multi-carousel'
+import 'react-multi-carousel/lib/styles.css'
+
 const useStyles = makeStyles((theme) => ({
-  root: {
-    height: '100%',
-    width: '100%',
+  container: {
+    border: '1px solid green',
     minWidth: '300px',
     maxWidth: '600px',
+    minHeight: '150px',
+    marginBottom: 20,
+  },
+  img: {
+    height: '100%',
+    width: '300px',
+    objectFit: 'cover',
+  },
+  content: {
+    height: '100%',
+    width: '300px',
+    overflow: 'hidden',
+    padding: 5,
     display: 'flex',
     flexDirection: 'column',
-    marginBottom: 30,
-  },
-  carousel: {
-    outline: 0,
-  },
-  orderTitle: {
-    color: theme.palette.primary.main,
   },
 }))
 
-export default function SimpleSlider() {
-  const settings = {
-    infinite: true,
-    speed: 1500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: 5000,
-    pauseOnHover: true,
-    dots: true,
-  }
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 600, min: 300 },
+    items: 1,
+  },
+  desktop: {
+    breakpoint: { max: 600, min: 300 },
+    items: 1,
+  },
+  tablet: {
+    breakpoint: { max: 600, min: 300 },
+    items: 1,
+  },
+  mobile: {
+    breakpoint: { max: 600, min: 300 },
+    items: 1,
+  },
+}
 
+export default function InfoCarolseu() {
   const classes = useStyles()
 
   return (
-    <Paper className={classes.root}>
-      <div>
-        <p>
-          A solução para quem não tem tempo de cozinhar, mas gosta de boa comida
-          em sua mesa.
-        </p>
-      </div>
+    <Carousel
+      responsive={responsive}
+      ssr={true}
+      className={classes.container}
+      infinite={true}
+      autoPlay={true}
+      autoPlaySpeed={7000}
+      arrows={false}
+    >
+      <Grid container wrap="wrap" className={classes.container}>
+        <Grid item xs={6}>
+          <img src="./media/1.jpg" alt="" className={classes.img} />
+        </Grid>
 
-      <div>
-        <p>Consulte nossas opções e aproveite as delícias da comida caseira.</p>
-      </div>
-      <div>
-        <h1 className={classes.orderTitle}>Encomendas</h1>
-        <div className="container">
-          <p>2ª a 4ª das 10:00 às 18:00.</p>
-          <p>Atendimento via WhatsApp.</p>
-        </div>
-      </div>
+        <Grid item xs={6} className={classes.content}>
+          <h1>Title 1</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus,
+            expedita quo! Voluptas quisquam aliquam officiis, quae consectetur
+            quidem voluptates nihil quasi ratione, quas maiores velit totam illo
+            suscipit alias cum.
+          </p>
+        </Grid>
+      </Grid>
 
-      <div>
-        <h1 className={classes.orderTitle}>Entregas</h1>
-        <div className="container">
-          <p>Icaraí, Santa Rosa, Centro e Ingá: R$ 8,00.</p>
-          <p>Demais localidades: sob consulta.</p>
-        </div>
-      </div>
-    </Paper>
+      <Grid container wrap="wrap" className={classes.container}>
+        <Grid item xs={6}>
+          <img src="./media/1.jpg" alt="" className={classes.img} />
+        </Grid>
+
+        <Grid item xs={6} className={classes.content}>
+          <h1>Title 2</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus,
+            expedita quo! Voluptas quisquam aliquam officiis, quae consectetur
+            quidem voluptates nihil quasi ratione, quas maiores velit totam illo
+            suscipit alias cum.
+          </p>
+        </Grid>
+      </Grid>
+    </Carousel>
   )
 }

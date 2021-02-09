@@ -24,7 +24,9 @@ export default function Home({ data }) {
   return (
     <main>
       <Container className={classes.cardGrid} maxWidth="md" spacing={2}>
-        <InfoCarousel />
+        <Grid container justify="center" alignItems="center">
+          <InfoCarousel />
+        </Grid>
 
         <Grid container spacing={4} justify="center">
           {groups.map((group, index) => {
