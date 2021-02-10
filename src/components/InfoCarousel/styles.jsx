@@ -4,20 +4,17 @@ export const useStyles = makeStyles((theme) => ({
   paper: {
     minHeight: '150px',
     minWidth: '300px',
-    maxWidth: '600px',
+    width: '600px',
     marginBottom: '20px',
     innerWidth: 1,
+  },
+  carousel: {
+    width: '100%'
   },
   item: {
     height: '150px',
     width: '100%',
     overflow: 'hidden',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    textAlign: 'center',
-    fontSize: 16,
   },
   splash: {
     height: '100%',
@@ -29,5 +26,6 @@ export const useStyles = makeStyles((theme) => ({
   },
   title: {
     color: theme.palette.primary.main,
+    margin: '10px 0',
   },
 }))
