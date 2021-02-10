@@ -1,8 +1,6 @@
 export async function logIn(username, password) {
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/auth-token`
 
-  console.log(url)
-
   const credentials = {
     username,
     password,

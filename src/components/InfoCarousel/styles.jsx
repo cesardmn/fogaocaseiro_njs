@@ -9,7 +9,7 @@ export const useStyles = makeStyles((theme) => ({
     innerWidth: 1,
   },
   carousel: {
-    width: '100%'
+    width: '100%',
   },
   item: {
     height: '150px',

@@ -13,11 +13,12 @@ function About() {
   return (
     <Grid container>
       <Grid item xs={12} md={4} className={classes.item}>
-        <img 
-          src="./media/1.jpg" 
+        <img
+          src="./media/1.jpg"
           alt="Filé de frango recheado com ricota e
-          espinafre" 
-          className={classes.splash} />
+          espinafre"
+          className={classes.splash}
+        />
       </Grid>
 
       <Grid item xs={12} md={8} className={classes.item}>
@@ -80,7 +81,11 @@ function Delivery() {
   return (
     <Grid container>
       <Grid item xs={12} md={4} className={classes.item}>
-        <img src="./media/3.jpg" alt="Purê de batatas" className={classes.splash} />
+        <img
+          src="./media/3.jpg"
+          alt="Purê de batatas"
+          className={classes.splash}
+        />
       </Grid>
 
       <Grid item xs={12} md={8} className={classes.item}>
@@ -110,7 +115,6 @@ function Delivery() {
     </Grid>
   )
 }
-
 
 const settings = {
   mouseTracking: true,

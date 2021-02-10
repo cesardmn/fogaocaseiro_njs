@@ -134,7 +134,7 @@ export default function PageDefaultMenu() {
           </Badge>
         </IconButton> */}
 
-        <IconButton
+        {/* <IconButton
           edge="end"
           aria-label="account of current user"
           aria-haspopup="true"
@@ -151,7 +151,7 @@ export default function PageDefaultMenu() {
           >
             <AccountCircle />
           </Badge>
-        </IconButton>
+        </IconButton> */}
       </Toolbar>
       {renderMenu}
     </div>
