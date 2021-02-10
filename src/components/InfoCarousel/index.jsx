@@ -13,7 +13,11 @@ function About() {
   return (
     <Grid container>
       <Grid item xs={12} md={4} className={classes.item}>
-        <img src="./media/1.jpg" alt="" className={classes.splash} />
+        <img 
+          src="./media/1.jpg" 
+          alt="Filé de frango recheado com ricota e
+          espinafre" 
+          className={classes.splash} />
       </Grid>
 
       <Grid item xs={12} md={8} className={classes.item}>
@@ -42,7 +46,7 @@ function Order() {
   return (
     <Grid container>
       <Grid item xs={12} md={4} className={classes.item}>
-        <img src="./media/2.jpg" alt="" className={classes.splash} />
+        <img src="./media/2.jpg" alt="Macarronese" className={classes.splash} />
       </Grid>
 
       <Grid item xs={12} md={8} className={classes.item}>
@@ -76,7 +80,7 @@ function Delivery() {
   return (
     <Grid container>
       <Grid item xs={12} md={4} className={classes.item}>
-        <img src="./media/3.jpg" alt="" className={classes.splash} />
+        <img src="./media/3.jpg" alt="Purê de batatas" className={classes.splash} />
       </Grid>
 
       <Grid item xs={12} md={8} className={classes.item}>
@@ -115,6 +119,8 @@ const settings = {
   disableDotsControls: true,
   disableButtonsControls: true,
   autoPlayInterval: 4500,
+  animationDuration: 1000,
+  AnimationType: 'fadeout',
   items: [<About />, <Order />, <Delivery />],
 }
 
