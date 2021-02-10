@@ -73,7 +73,7 @@ export default function PageDefaultMenu() {
               setAnchorEl(null)
             }}
           >
-            <span>{user}</span>
+            <span>Olá {user}!</span>
           </MenuItem>
 
           <MenuItem
@@ -133,7 +133,7 @@ export default function PageDefaultMenu() {
             <ShoppingCartIcon />
           </Badge>
         </IconButton> */}
-{/* 
+
         <IconButton
           edge="end"
           aria-label="account of current user"
@@ -151,7 +151,7 @@ export default function PageDefaultMenu() {
           >
             <AccountCircle />
           </Badge>
-        </IconButton> */}
+        </IconButton>
       </Toolbar>
       {renderMenu}
     </div>
