@@ -5,6 +5,8 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '../providers/theme'
 
+import { AuthProvider } from '../providers/auth'
+
 export default function MyApp(props) {
   const { Component, pageProps } = props
 
@@ -27,8 +29,10 @@ export default function MyApp(props) {
         <link rel="icon" href="./media/logo.png"></link>
       </Head>
       <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...pageProps} />
+        <AuthProvider>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </AuthProvider>
       </ThemeProvider>
     </React.Fragment>
   )
