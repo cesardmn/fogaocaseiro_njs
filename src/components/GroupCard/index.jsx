@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 
 import ItemChoice from '../ItemChoice'
+import { TypeProvider } from '../../providers/typeCount'
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -79,7 +80,9 @@ export default function GroupCard({ group }) {
         </CardContent>
 
         <CardActions>
-          <ItemChoice group={group} />
+          <TypeProvider>
+            <ItemChoice group={group} />
+          </TypeProvider>
         </CardActions>
       </Card>
     </Grid>

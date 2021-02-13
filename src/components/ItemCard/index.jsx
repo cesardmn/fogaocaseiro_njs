@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 
 import { fMoney, CapStrFirst } from '../../utils'
+import { useType } from '../../providers/typeCount'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,6 +41,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ItemCard({ item }) {
   const classes = useStyles()
+  const { totalType, setTotalType } = useType()
+
+  const minOrder = item.group.min_order
+  const percent = 100 / minOrder
 
   const [totalItem, setTotalItem] = useState(0)
   const [itemCount, setItemCount] = useState(0)
@@ -47,6 +52,7 @@ export default function ItemCard({ item }) {
   function addItem() {
     setItemCount(itemCount + 1)
     setTotalItem(totalItem + item.sale_price)
+    setTotalType(totalType + percent)
     window.navigator.vibrate(20)
   }
 
@@ -54,6 +60,7 @@ export default function ItemCard({ item }) {
     if (itemCount > 0) {
       setItemCount(itemCount - 1)
       setTotalItem(totalItem - item.sale_price)
+      setTotalType(totalType - percent)
       window.navigator.vibrate(20)
     }
   }
@@ -91,11 +98,7 @@ export default function ItemCard({ item }) {
             </Grid>
 
             <Grid item>
-              <ButtonGroup
-                variant="outlined"
-                // color="secondary"
-                aria-label="text primary button group"
-              >
+              <ButtonGroup variant="outlined">
                 <Button onClick={removeItem}>-</Button>
                 <Typography variant="button" className={classes.displayItem}>
                   {itemCount}

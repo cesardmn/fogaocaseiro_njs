@@ -8,11 +8,13 @@ import { useTheme } from '@material-ui/core/styles'
 import TypeList from '../TypeList'
 import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
 import { Typography } from '@material-ui/core'
 import HomeIcon from '@material-ui/icons/Home'
 import IconButton from '@material-ui/core/IconButton'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
+import LinearProgress from '@material-ui/core/LinearProgress'
+
+import { useType } from '../../providers/typeCount'
 
 const useStyles = makeStyles((theme) => ({
   requiredDisplay: {
@@ -32,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
     height: 70,
     width: 70,
   },
+  paper: {
+    padding: 5,
+  },
 }))
 
 export default function ItemChoice({ group }) {
@@ -44,10 +49,12 @@ export default function ItemChoice({ group }) {
   }
 
   const handleClose = () => {
+    setTotalType(0)
     setOpen(false)
   }
 
   const classes = useStyles()
+  const { totalType, setTotalType } = useType()
 
   return (
     <div>
@@ -77,11 +84,19 @@ export default function ItemChoice({ group }) {
               <ArrowBackIosIcon />
             </IconButton>
 
-            <Paper className={classes.requiredDisplay}>
-              <Typography variant="subtitle1">
-                mínimo ({group.min_order} un.)
-              </Typography>
-            </Paper>
+            <div>
+              {totalType >= 100 ? (
+                <Button>Adicionar</Button>
+              ) : (
+                <Typography variant="body1">
+                  Escolha ao menos {group.min_order} {group.name}.
+                </Typography>
+              )}
+              <LinearProgress
+                variant="determinate"
+                value={totalType > 100 ? 100 : totalType}
+              />
+            </div>
 
             <IconButton onClick={handleClose} autoFocus>
               <HomeIcon />
