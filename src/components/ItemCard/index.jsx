@@ -14,13 +14,10 @@ export default function ItemCard({ item }) {
 
   const minOrder = item.group.min_order
   const percent = 100 / minOrder
-
-  const [totalItem, setTotalItem] = useState(0)
   const [itemCount, setItemCount] = useState(0)
 
   function addItem() {
     setItemCount(itemCount + 1)
-    setTotalItem(totalItem + item.sale_price)
     setTotalType(totalType + percent)
     window.navigator.vibrate(20)
   }
@@ -28,7 +25,6 @@ export default function ItemCard({ item }) {
   function removeItem() {
     if (itemCount > 0) {
       setItemCount(itemCount - 1)
-      setTotalItem(totalItem - item.sale_price)
       setTotalType(totalType - percent)
       window.navigator.vibrate(20)
     }
