@@ -7,37 +7,14 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { useTheme } from '@material-ui/core/styles'
 import TypeList from '../TypeList'
 import Grid from '@material-ui/core/Grid'
-import { makeStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
 import { Typography } from '@material-ui/core'
-import HomeIcon from '@material-ui/icons/Home'
-import IconButton from '@material-ui/core/IconButton'
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 import LinearProgress from '@material-ui/core/LinearProgress'
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
 
+import { useStyles } from './styles'
 import { useType } from '../../providers/typeCount'
-
-const useStyles = makeStyles((theme) => ({
-  requiredDisplay: {
-    backgroundColor: theme.palette.secondary.light,
-    color: 'white',
-    fontSize: '14px',
-    padding: 5,
-  },
-  bg: {
-    backgroundImage: `url('./media/bg.png')`,
-    backgroundSize: 'cover',
-    color: 'white',
-    overflow: 'hidden',
-    padding: '0 1rem',
-  },
-  logo: {
-    height: 70,
-    width: 70,
-  },
-  paper: {
-    padding: 5,
-  },
-}))
+import { Add } from '@material-ui/icons'
 
 export default function ItemChoice({ group }) {
   const [open, setOpen] = React.useState(false)
@@ -68,41 +45,64 @@ export default function ItemChoice({ group }) {
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
       >
-        <DialogTitle id="responsive-dialog-title" className={classes.bg}>
-          <Grid container justify="space-between" alignItems="center">
-            <Grid item>{group.name}</Grid>
+        <DialogTitle id="responsive-dialog-title" className={classes.bg} />
 
+        <Grid container className={classes.top} alignItems="center">
+          <Grid
+            item
+            xs={7}
+            container
+            className={classes.left}
+            direction="column"
+          >
             <Grid item>
-              <img src="./media/logo.png" alt="" className={classes.logo} />
+              <Typography component="h2" variant="h6" color="primary">
+                {group.name}
+              </Typography>
             </Grid>
+            {totalType < 100 ? (
+              <Typography color="textSecondary">
+                Escolha ao menos {group.min_order}{' '}
+                {group.min_order > 1 ? 'itens' : 'item'}.
+              </Typography>
+            ) : (
+              <Typography color="textSecondary">
+                Adicione ao carrinho.
+              </Typography>
+            )}
           </Grid>
-        </DialogTitle>
 
-        <DialogActions>
-          <Grid container justify="space-between">
-            <IconButton onClick={handleClose} autoFocus>
-              <ArrowBackIosIcon />
-            </IconButton>
+          <Grid
+            item
+            xs={5}
+            container
+            className={classes.right}
+            justify="flex-end"
+          >
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+              disabled={totalType >= 100 ? false : true}
+            >
+              <Grid item xs={8} container>
+                <Grid item>0/2 itens</Grid>
+                <Grid item>R$ 0,00</Grid>
+              </Grid>
 
-            <div>
-              {totalType >= 100 ? (
-                <Button>Adicionar</Button>
-              ) : (
-                <Typography variant="body1">
-                  Escolha ao menos {group.min_order} {group.name}.
-                </Typography>
-              )}
-              <LinearProgress
-                variant="determinate"
-                value={totalType > 100 ? 100 : totalType}
-              />
-            </div>
-
-            <IconButton onClick={handleClose} autoFocus>
-              <HomeIcon />
-            </IconButton>
+              <Grid item xs={4}>
+                <AddShoppingCartIcon />
+              </Grid>
+            </Button>
           </Grid>
-        </DialogActions>
+        </Grid>
+
+        <LinearProgress
+          variant="determinate"
+          value={totalType > 100 ? 100 : totalType}
+          color={totalType >= 100 ? 'primary' : 'secondary'}
+          className={classes.linear}
+        />
 
         <TypeList group={group} />
       </Dialog>
