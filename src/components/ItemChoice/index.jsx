@@ -10,6 +10,11 @@ import { Typography } from '@material-ui/core'
 import LinearProgress from '@material-ui/core/LinearProgress'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
 import Badge from '@material-ui/core/Badge'
+import BottomNavigation from '@material-ui/core/BottomNavigation'
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
+import HomeIcon from '@material-ui/icons/Home'
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 
 import { useStyles } from './styles'
 import { useType } from '../../providers/typeCount'
@@ -86,10 +91,12 @@ export default function ItemChoice({ group }) {
               disabled={totalType >= 100 ? false : true}
             >
               <Grid item xs container>
-                <Grid item color="primary" >{fMoney(totalValueType)}</Grid>
+                <Grid item color="primary">
+                  {fMoney(totalValueType)}
+                </Grid>
               </Grid>
 
-              <Grid item xs={4} >
+              <Grid item xs={4}>
                 <Badge badgeContent={totalCountType}>
                   <AddShoppingCartIcon />
                 </Badge>
@@ -106,6 +113,15 @@ export default function ItemChoice({ group }) {
         />
 
         <TypeList group={group} />
+
+        <BottomNavigation>
+          <BottomNavigationAction
+            icon={<ArrowBackIosIcon />}
+            onClick={handleClose}
+          />
+          <BottomNavigationAction icon={<HomeIcon />} onClick={handleClose} />
+          <BottomNavigationAction icon={<ShoppingCartIcon />} />
+        </BottomNavigation>
       </Dialog>
     </div>
   )
