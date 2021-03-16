@@ -1,20 +1,19 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
 import Dialog from '@material-ui/core/Dialog'
-import DialogActions from '@material-ui/core/DialogActions'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { useTheme } from '@material-ui/core/styles'
 import TypeList from '../TypeList'
 import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
 import { Typography } from '@material-ui/core'
 import LinearProgress from '@material-ui/core/LinearProgress'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
+import Badge from '@material-ui/core/Badge'
 
 import { useStyles } from './styles'
 import { useType } from '../../providers/typeCount'
-import { Add } from '@material-ui/icons'
+import { fMoney } from '../../utils'
 
 export default function ItemChoice({ group }) {
   const [open, setOpen] = React.useState(false)
@@ -31,7 +30,7 @@ export default function ItemChoice({ group }) {
   }
 
   const classes = useStyles()
-  const { totalType, setTotalType } = useType()
+  const { totalType, setTotalType, totalValueType, totalCountType } = useType()
 
   return (
     <div>
@@ -60,16 +59,17 @@ export default function ItemChoice({ group }) {
                 {group.name}
               </Typography>
             </Grid>
-            {totalType < 100 ? (
-              <Typography color="textSecondary">
-                Escolha ao menos {group.min_order}{' '}
-                {group.min_order > 1 ? 'itens' : 'item'}.
-              </Typography>
-            ) : (
-              <Typography color="textSecondary">
-                Adicione ao carrinho.
-              </Typography>
-            )}
+            <Grid item>
+              {totalType < 100 ? (
+                <Typography color="textSecondary">
+                  {totalCountType}/{group.min_order} itens escolhidos.
+                </Typography>
+              ) : (
+                <Typography color="textSecondary">
+                  {totalCountType} itens escolhidos.
+                </Typography>
+              )}
+            </Grid>
           </Grid>
 
           <Grid
@@ -80,18 +80,19 @@ export default function ItemChoice({ group }) {
             justify="flex-end"
           >
             <Button
-              variant="contained"
+              variant="outlined"
               color="secondary"
               className={classes.button}
               disabled={totalType >= 100 ? false : true}
             >
-              <Grid item xs={8} container>
-                <Grid item>0/2 itens</Grid>
-                <Grid item>R$ 0,00</Grid>
+              <Grid item xs container>
+                <Grid item color="primary" >{fMoney(totalValueType)}</Grid>
               </Grid>
 
-              <Grid item xs={4}>
-                <AddShoppingCartIcon />
+              <Grid item xs={4} >
+                <Badge badgeContent={totalCountType}>
+                  <AddShoppingCartIcon />
+                </Badge>
               </Grid>
             </Button>
           </Grid>

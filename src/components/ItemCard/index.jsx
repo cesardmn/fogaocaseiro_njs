@@ -10,7 +10,14 @@ import { useStyles } from './styles'
 
 export default function ItemCard({ item }) {
   const classes = useStyles()
-  const { totalType, setTotalType } = useType()
+  const {
+    totalType,
+    setTotalType,
+    totalValueType,
+    setTotalValueType,
+    totalCountType,
+    setTotalCountType,
+  } = useType()
 
   const minOrder = item.group.min_order
   const percent = 100 / minOrder
@@ -19,6 +26,8 @@ export default function ItemCard({ item }) {
   function addItem() {
     setItemCount(itemCount + 1)
     setTotalType(totalType + percent)
+    setTotalValueType(totalValueType + item.sale_price)
+    setTotalCountType(totalCountType + 1)
     window.navigator.vibrate(20)
   }
 
@@ -26,6 +35,8 @@ export default function ItemCard({ item }) {
     if (itemCount > 0) {
       setItemCount(itemCount - 1)
       setTotalType(totalType - percent)
+      setTotalValueType(totalValueType - item.sale_price)
+      setTotalCountType(totalCountType - 1)
       window.navigator.vibrate(20)
     }
   }

@@ -23,7 +23,9 @@ export const useStyles = makeStyles((theme) => ({
     // border: '1px solid blue',
   },
   button: {
-    padding: '0 10px',
+    padding: '10px',
     textTransform: 'none',
+    minWidth: '150px',
+    height: '100%'
   }
 }))
