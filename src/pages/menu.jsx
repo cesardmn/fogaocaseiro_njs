@@ -163,7 +163,7 @@ export default function Menu({ data }) {
 
 export async function getStaticProps() {
   let date = new Date()
-  date.setDate(date.getDate() + 4)
+  date.setDate(date.getDate() + 3)
   const data = date.toLocaleDateString()
   return {
     props: {
