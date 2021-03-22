@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
 import WhatsAppIcon from '@material-ui/icons/WhatsApp'
 import InstagramIcon from '@material-ui/icons/Instagram'
 import axios from 'axios'
@@ -36,9 +37,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Menu() {
+export default function Menu({ data }) {
   const [isLoading, setIsLoading] = useState(true)
   const [pages, setPages] = useState([])
+
+  const date = new Date(data)
 
   useEffect(() => {
     setIsLoading(false)
@@ -87,8 +90,28 @@ export default function Menu() {
                 </Header>
 
                 <TopGroup>
-                  <h1 className={classes.groupTitle}>{page.group}</h1>
-                  <span>(mínimo {page.min_order} un.)</span>
+                  <Grid container direction="row" alignItems="baseline">
+                    <Grid
+                      item
+                      xs={8}
+                      container
+                      direction="row"
+                      alignItems="baseline"
+                    >
+                      <Grid item>
+                        <h1 className={classes.groupTitle}>{page.group}</h1>
+                      </Grid>
+                      <Grid item>
+                        <span>(mínimo {page.min_order} un.)</span>
+                      </Grid>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Typography color="textSecondary">
+                        Válido para pedidos até{' '}
+                        {date.toLocaleString('pt-br').slice(0, 10)}
+                      </Typography>
+                    </Grid>
+                  </Grid>
                 </TopGroup>
 
                 <MenuList>
@@ -136,4 +159,16 @@ export default function Menu() {
       )}
     </div>
   )
+}
+
+export async function getStaticProps() {
+  let date = new Date()
+  date.setDate(date.getDate() + 4)
+  const data = date.toLocaleDateString()
+  return {
+    props: {
+      data,
+    },
+    revalidate: 604800,
+  }
 }
