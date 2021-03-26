@@ -8,6 +8,7 @@ import axios from 'axios'
 
 import { getPages, fMoney, CapStrFirst } from '../utils'
 import { Page, Header, TopGroup, MenuList } from '../views/menu/menu'
+import FomrDateDialog from '../pages_files/menu/dialog'
 
 const useStyles = makeStyles((theme) => ({
   print: {
@@ -41,7 +42,7 @@ export default function Menu({ data }) {
   const [isLoading, setIsLoading] = useState(true)
   const [pages, setPages] = useState([])
 
-  const date = new Date(data)
+  const [date, setDate] = useState(new Date())
 
   useEffect(() => {
     setIsLoading(false)
@@ -107,8 +108,10 @@ export default function Menu({ data }) {
                     </Grid>
                     <Grid item xs={4}>
                       <Typography color="textSecondary">
-                        Válido para pedidos até{' '}
-                        {date.toLocaleString('pt-br').slice(0, 10)}
+                        <FomrDateDialog
+                          date={date.toLocaleString('pt-br').slice(0, 10)}
+                          setDate={setDate}
+                        />
                       </Typography>
                     </Grid>
                   </Grid>
@@ -159,16 +162,4 @@ export default function Menu({ data }) {
       )}
     </div>
   )
-}
-
-export async function getStaticProps() {
-  let date = new Date()
-  date.setDate(date.getDate() + 2)
-  const data = date.toLocaleDateString()
-  return {
-    props: {
-      data,
-    },
-    revalidate: 604800,
-  }
 }
