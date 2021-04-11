@@ -104,7 +104,7 @@ function Delivery() {
           </Typography>
 
           <Typography variant="body1" className={classes.text} align="center">
-            R$ 8,00.
+            R$ 10,00.
           </Typography>
 
           <Typography variant="body1" className={classes.text} align="center">
