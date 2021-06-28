@@ -10,6 +10,7 @@ export default function Index({ apiData }) {
   )
 }
 
+
 export async function getStaticProps() {
   const res = await fetch(`${process.env.BASE_URL}/api/items`)
   const apiData = await res.json()
