@@ -12,6 +12,7 @@ export default function Index({ apiData }) {
 
 
 export async function getStaticProps() {
+  
   const res = await fetch(`${process.env.BASE_URL}/api/items`)
   const apiData = await res.json()
 
@@ -19,7 +20,7 @@ export async function getStaticProps() {
     props: {
       apiData,
     },
-    revalidate: 604800,
+    revalidate: 604801,
   }
 }
   
